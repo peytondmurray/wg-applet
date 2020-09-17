@@ -1,0 +1,4 @@
+.qmake.stash
+.clangd/
+wg-applet
+main.o
