@@ -1,4 +1,5 @@
 .qmake.stash
 .clangd/
 wg-applet
-main.o
+*.o
+moc_*
