@@ -25,7 +25,7 @@
             "main.o",
             "main.cpp"
         ],
-        "directory": "/home/pdmurray/Desktop/workspace/wg-applet",
+        "directory": "/home/pdmurray/Desktop/Workspace/wg-applet",
         "file": "main.cpp"
     },
     {
@@ -54,7 +54,7 @@
             "wgapplet.o",
             "wgapplet.cpp"
         ],
-        "directory": "/home/pdmurray/Desktop/workspace/wg-applet",
+        "directory": "/home/pdmurray/Desktop/Workspace/wg-applet",
         "file": "wgapplet.cpp"
     }
 ]

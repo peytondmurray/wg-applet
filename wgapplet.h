@@ -31,6 +31,8 @@ private:
     void createConfigs(std::string path);
     void refreshConfigs(std::string path);
 
+    enum ConnectionCommand {up, down};
+
     QList<std::filesystem::path> configs;
     QList<QAction *> actions;
     QSystemTrayIcon *trayIcon;

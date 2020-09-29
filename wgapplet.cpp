@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
-#include <format>
+#include <string>
 
 #define WIREGUARDPATH "/etc/wireguard/"
 
@@ -81,13 +81,17 @@ void wgApplet::refreshActions() {
 
 // Start a connection
 void wgApplet::startConnection(QAction* action) {
-
-    //std::string path = action->data().toString().toStdString();
-    std::ostringstream command;
-    command << "wg-quick up ";
-    command << WIREGUARDPATH;
-    command << action->data().toString().toStdString();
-    std::system(command.str());
-    action->data();
+    auto config = action->data().toString().toStdString();
+    auto command = std::string("wg-quick up ") + std::string(WIREGUARDPATH) + config;
+    std::system(command.c_str());
     return;
 }
+
+// End a connection
+void wgApplet::setConnection(std::string type, std::string config) {
+    std::string command = "wg-quick " + type + " " + WIREGUARDPATH + config;
+    std::system(command.c_str());
+    return;
+}
+
+void wgApplet::setConnection();
