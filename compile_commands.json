@@ -4,13 +4,12 @@
             "clang++",
             "-c",
             "-pipe",
-            "-O2",
+            "-g",
             "-std=gnu++1z",
             "-Wall",
             "-Wextra",
             "-D_REENTRANT",
             "-fPIC",
-            "-DQT_NO_DEBUG",
             "-DQT_WIDGETS_LIB",
             "-DQT_GUI_LIB",
             "-DQT_CORE_LIB",
@@ -20,26 +19,26 @@
             "-I/usr/include/qt/QtGui",
             "-I/usr/include/qt/QtCore",
             "-I.",
+            "-I.",
             "-I/usr/lib/qt/mkspecs/linux-clang",
             "-o",
-            "window.o",
-            "window.cpp"
+            "main.o",
+            "main.cpp"
         ],
-        "directory": "/home/pdmurray/Desktop/Workspace/wg-applet",
-        "file": "window.cpp"
+        "directory": "/home/pdmurray/Desktop/workspace/wg-applet",
+        "file": "main.cpp"
     },
     {
         "arguments": [
             "clang++",
             "-c",
             "-pipe",
-            "-O2",
+            "-g",
             "-std=gnu++1z",
             "-Wall",
             "-Wextra",
             "-D_REENTRANT",
             "-fPIC",
-            "-DQT_NO_DEBUG",
             "-DQT_WIDGETS_LIB",
             "-DQT_GUI_LIB",
             "-DQT_CORE_LIB",
@@ -49,12 +48,13 @@
             "-I/usr/include/qt/QtGui",
             "-I/usr/include/qt/QtCore",
             "-I.",
+            "-I.",
             "-I/usr/lib/qt/mkspecs/linux-clang",
             "-o",
-            "moc_window.o",
-            "moc_window.cpp"
+            "wgapplet.o",
+            "wgapplet.cpp"
         ],
-        "directory": "/home/pdmurray/Desktop/Workspace/wg-applet",
-        "file": "moc_window.cpp"
+        "directory": "/home/pdmurray/Desktop/workspace/wg-applet",
+        "file": "wgapplet.cpp"
     }
 ]
