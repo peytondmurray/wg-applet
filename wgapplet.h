@@ -1,12 +1,12 @@
 #ifndef WGAPPLET_H
 #define WGAPPLET_H
 
-#include <filesystem>
 #include "qaction.h"
 #include "qobjectdefs.h"
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 #include <QMenu>
+#include <filesystem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class wgApplet; }
@@ -21,17 +21,19 @@ public:
     ~wgApplet();
 
 private slots:
-    void startConnection(QAction *action);
+    void start(QAction *action);
+    void stop(QAction *action);
 
 private:
     void createTrayIcon();
     void createActions();
+    QMenu * createMenu();
     void refreshActions();
 
     void createConfigs(std::string path);
     void refreshConfigs(std::string path);
 
-    enum ConnectionCommand {up, down};
+    void setConnection(std::string option, std::string config);
 
     QList<std::filesystem::path> configs;
     QList<QAction *> actions;

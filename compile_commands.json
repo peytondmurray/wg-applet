@@ -4,12 +4,13 @@
             "clang++",
             "-c",
             "-pipe",
-            "-g",
+            "-O2",
             "-std=gnu++1z",
             "-Wall",
             "-Wextra",
             "-D_REENTRANT",
             "-fPIC",
+            "-DQT_NO_DEBUG",
             "-DQT_WIDGETS_LIB",
             "-DQT_GUI_LIB",
             "-DQT_CORE_LIB",
@@ -25,7 +26,7 @@
             "main.o",
             "main.cpp"
         ],
-        "directory": "/home/pdmurray/Desktop/Workspace/wg-applet",
+        "directory": "/home/pdmurray/Desktop/workspace/wg-applet",
         "file": "main.cpp"
     },
     {
@@ -33,12 +34,13 @@
             "clang++",
             "-c",
             "-pipe",
-            "-g",
+            "-O2",
             "-std=gnu++1z",
             "-Wall",
             "-Wextra",
             "-D_REENTRANT",
             "-fPIC",
+            "-DQT_NO_DEBUG",
             "-DQT_WIDGETS_LIB",
             "-DQT_GUI_LIB",
             "-DQT_CORE_LIB",
@@ -54,7 +56,7 @@
             "wgapplet.o",
             "wgapplet.cpp"
         ],
-        "directory": "/home/pdmurray/Desktop/Workspace/wg-applet",
+        "directory": "/home/pdmurray/Desktop/workspace/wg-applet",
         "file": "wgapplet.cpp"
     }
 ]

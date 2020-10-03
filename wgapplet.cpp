@@ -12,6 +12,7 @@
 
 #define WIREGUARDPATH "/etc/wireguard/"
 
+
 wgApplet::wgApplet(QWidget *parent) : QMainWindow(parent), ui(new Ui::wgApplet)
 {
     ui->setupUi(this);
@@ -42,22 +43,29 @@ void wgApplet::createTrayIcon() {
     return;
 }
 
+QMenu* wgApplet::createMenu() {
+
+
+}
+
 void wgApplet::createActions() {
 
     auto settingsAction = new QAction("Settings...", this);
     connect(settingsAction, &QAction::triggered, this, &QWidget::show);
     actions.append(settingsAction);
 
+    settingsAction = new QAction("Disconnect", this);
+    connect(settingsAction, &QAction::triggered, this, &wgApplet::stop);
+
     for (auto path : configs) {
         settingsAction = new QAction(path.c_str(), this);
         settingsAction->setData(QString::fromStdString(path.string()));
-        connect(settingsAction, &QAction::triggered, this, &wgApplet::startConnection);
+        connect(settingsAction, &QAction::triggered, this, &wgApplet::start);
         actions.append(settingsAction);
     }
 
     return;
 }
-
 
 void wgApplet::createConfigs(std::string path) {
     for (const auto &entry : std::filesystem::directory_iterator(path)) {
@@ -66,7 +74,6 @@ void wgApplet::createConfigs(std::string path) {
     return;
 }
 
-// Refresh all the configs in this->configs.
 void wgApplet::refreshConfigs(std::string path) {
     configs.clear();
     createConfigs(path);
@@ -80,18 +87,20 @@ void wgApplet::refreshActions() {
 }
 
 // Start a connection
-void wgApplet::startConnection(QAction* action) {
-    auto config = action->data().toString().toStdString();
-    auto command = std::string("wg-quick up ") + std::string(WIREGUARDPATH) + config;
-    std::system(command.c_str());
+void wgApplet::start(QAction* action) {
+    setConnection("up", action->data().toString().toStdString());
     return;
 }
 
-// End a connection
-void wgApplet::setConnection(std::string type, std::string config) {
-    std::string command = "wg-quick " + type + " " + WIREGUARDPATH + config;
-    std::system(command.c_str());
+// Stop a connection
+void wgApplet::stop(QAction* action) {
+    setConnection("down", action->data().toString().toStdString());
     return;
 }
 
-void wgApplet::setConnection();
+// Compose and execute the command to start or stop a connection
+void wgApplet::setConnection(std::string option, std::string config) {
+    std::string command = "wg-quick " + option + " " + WIREGUARDPATH + config;
+    std::system(command.c_str());
+    return;
+}
