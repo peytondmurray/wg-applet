@@ -5,6 +5,7 @@
 #include "qmenu.h"
 #include "qsystemtrayicon.h"
 #include "ui_wgapplet.h"
+#include "wgaction.h"
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>
@@ -16,9 +17,7 @@
 wgApplet::wgApplet(QWidget *parent) : QMainWindow(parent), ui(new Ui::wgApplet)
 {
     ui->setupUi(this);
-
     createTrayIcon();
-
     trayIcon->show();
     setWindowTitle("Settings");
 }
@@ -31,6 +30,7 @@ wgApplet::~wgApplet()
 void wgApplet::createTrayIcon() {
 
     menu = new QMenu(this);
+
 
     createConfigs(WIREGUARDPATH);
     createActions();
@@ -58,7 +58,7 @@ void wgApplet::createActions() {
     connect(settingsAction, &QAction::triggered, this, &wgApplet::stop);
 
     for (auto path : configs) {
-        settingsAction = new QAction(path.c_str(), this);
+        settingsAction = new wgAction(this, path.c_str());
         settingsAction->setData(QString::fromStdString(path.string()));
         connect(settingsAction, &QAction::triggered, this, &wgApplet::start);
         actions.append(settingsAction);
@@ -67,6 +67,11 @@ void wgApplet::createActions() {
     return;
 }
 
+/**
+ * Get the list of config files from the specified path.
+ *
+ * @param path Path to the wireguard configs; usually this is /etc/wireguard/
+ */
 void wgApplet::createConfigs(std::string path) {
     for (const auto &entry : std::filesystem::directory_iterator(path)) {
         configs.push_back(entry);

@@ -1,7 +1,7 @@
 #ifndef WGAPPLET_H
 #define WGAPPLET_H
 
-#include "qaction.h"
+#include "wgaction.h"
 #include "qobjectdefs.h"
 #include <QMainWindow>
 #include <QSystemTrayIcon>
@@ -21,8 +21,8 @@ public:
     ~wgApplet();
 
 private slots:
-    void start(QAction *action);
-    void stop(QAction *action);
+    void start(wgAction *action);
+    void stop(wgAction *action);
 
 private:
     void createTrayIcon();
@@ -36,7 +36,7 @@ private:
     void setConnection(std::string option, std::string config);
 
     QList<std::filesystem::path> configs;
-    QList<QAction *> actions;
+    QList<wgAction *> actions;
     QSystemTrayIcon *trayIcon;
     QMenu *menu;
     Ui::wgApplet *ui;
