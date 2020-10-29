@@ -12,6 +12,7 @@
 #include <string>
 
 #define WIREGUARDPATH "/etc/wireguard/"
+#define ICONPATH "/home/pdmurray/Desktop/Workspace/wg-applet/icon.svg"
 
 
 wgApplet::wgApplet(QWidget *parent) : QMainWindow(parent), ui(new Ui::wgApplet)
@@ -29,40 +30,38 @@ wgApplet::~wgApplet()
 
 void wgApplet::createTrayIcon() {
 
-    menu = new QMenu(this);
-
-
-    createConfigs(WIREGUARDPATH);
-    createActions();
-    menu->addSeparator();
-    menu->addActions(actions);
+    menu = createMenu();
 
     trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(QIcon());
+    trayIcon->setIcon(QIcon(ICONPATH));
     trayIcon->setContextMenu(menu);
     return;
 }
 
 QMenu* wgApplet::createMenu() {
-
-
+    auto m = new QMenu();
+    createActions();
+    m->addSeparator();
+    for (const auto &action : actions) {
+        m->addAction(action);
+    }
+    return m;
 }
 
 void wgApplet::createActions() {
 
-    auto settingsAction = new QAction("Settings...", this);
-    connect(settingsAction, &QAction::triggered, this, &QWidget::show);
+    auto settingsAction = new wgAction("Settings...", this);
+    connect(settingsAction, &wgAction::triggered, this, &QWidget::show);
     actions.append(settingsAction);
 
-    settingsAction = new QAction("Disconnect", this);
-    connect(settingsAction, &QAction::triggered, this, &wgApplet::stop);
+    //settingsAction = new wgAction("Disconnect", this);
+    //connect(settingsAction, &wgAction::triggered, this, &wgApplet::stop);
 
-    for (auto path : configs) {
-        settingsAction = new wgAction(this, path.c_str());
-        settingsAction->setData(QString::fromStdString(path.string()));
-        connect(settingsAction, &QAction::triggered, this, &wgApplet::start);
-        actions.append(settingsAction);
-    }
+    //for (auto path : configs) {
+        //settingsAction = new wgAction(path.string(), this, path.c_str());
+        //connect(settingsAction, &wgAction::triggered, this, &wgApplet::start);
+        //actions.append(settingsAction);
+    //}
 
     return;
 }
@@ -92,14 +91,14 @@ void wgApplet::refreshActions() {
 }
 
 // Start a connection
-void wgApplet::start(QAction* action) {
-    setConnection("up", action->data().toString().toStdString());
+void wgApplet::start(bool checked) {
+    //setConnection("up", action->getConfig().toStdString());
     return;
 }
 
 // Stop a connection
-void wgApplet::stop(QAction* action) {
-    setConnection("down", action->data().toString().toStdString());
+void wgApplet::stop(bool checked) {
+    //setConnection("down", action->getConfig().toStdString());
     return;
 }
 

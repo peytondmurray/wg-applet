@@ -21,8 +21,10 @@ public:
     ~wgApplet();
 
 private slots:
-    void start(wgAction *action);
-    void stop(wgAction *action);
+    //void start(wgAction *action);
+    //void stop(wgAction *action);
+    void start(bool checked);
+    void stop(bool checked);
 
 private:
     void createTrayIcon();

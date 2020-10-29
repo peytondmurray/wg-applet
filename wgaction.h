@@ -2,18 +2,25 @@
 #define WGACTION_H
 
 #include "qaction.h"
-#include "qwidget.h"
 #include "qobjectdefs.h"
+#include "qwidgetaction.h"
 
-class wgAction : public QAction {
+class wgAction : public QWidgetAction {
 
     Q_OBJECT
 
 public:
-    template<typename...Args> wgAction(QString configuration, Args... args);
+    //template<typename...Args> wgAction(Args... args);
+    //template<typename...Args> wgAction(QString configuration, Args... args);
+    //template<typename...Args> wgAction(char const *configuration, Args... args);
+    //template<typename...Args> wgAction(std::string configuration, Args... args);
+    wgAction(QString text, QWidget *parent);
 
-signals:
-    QString triggered();
+    QString getConfig();
+    void setConfig(QString configuration);
+
+//signals:
+    //QString triggered(bool checked);
 
 private:
     QString config;
