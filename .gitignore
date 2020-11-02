@@ -3,3 +3,5 @@
 wg-applet
 *.o
 moc_*
+*.pro.user
+*.json

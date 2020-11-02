@@ -14,13 +14,15 @@ public:
     //template<typename...Args> wgAction(QString configuration, Args... args);
     //template<typename...Args> wgAction(char const *configuration, Args... args);
     //template<typename...Args> wgAction(std::string configuration, Args... args);
+    wgAction(QString text, QString conf, QWidget *parent);
     wgAction(QString text, QWidget *parent);
 
     QString getConfig();
     void setConfig(QString configuration);
 
-//signals:
-    //QString triggered(bool checked);
+signals:
+    //void triggered(bool checked);
+    void action_triggered(QString conf);
 
 private:
     QString config;

@@ -24,7 +24,8 @@ private slots:
     //void start(wgAction *action);
     //void stop(wgAction *action);
     void start(bool checked);
-    void stop(bool checked);
+    //void stop(bool checked);
+    void stop(QString checked);
 
 private:
     void createTrayIcon();

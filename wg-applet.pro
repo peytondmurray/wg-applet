@@ -6,10 +6,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    wgapplet.cpp
+    wgapplet.cpp \
+    wgaction.cpp
 
 HEADERS += \
-    wgapplet.h
+    wgapplet.h \
+    wgaction.h
 
 FORMS += \
     wgapplet.ui

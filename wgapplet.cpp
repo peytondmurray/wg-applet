@@ -12,7 +12,7 @@
 #include <string>
 
 #define WIREGUARDPATH "/etc/wireguard/"
-#define ICONPATH "/home/pdmurray/Desktop/Workspace/wg-applet/icon.svg"
+#define ICONPATH "/home/pdmurray/Desktop/workspace/wg-applet/lock.svg"
 
 
 wgApplet::wgApplet(QWidget *parent) : QMainWindow(parent), ui(new Ui::wgApplet)
@@ -21,6 +21,7 @@ wgApplet::wgApplet(QWidget *parent) : QMainWindow(parent), ui(new Ui::wgApplet)
     createTrayIcon();
     trayIcon->show();
     setWindowTitle("Settings");
+    this->hide();
 }
 
 wgApplet::~wgApplet()
@@ -31,7 +32,6 @@ wgApplet::~wgApplet()
 void wgApplet::createTrayIcon() {
 
     menu = createMenu();
-
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(QIcon(ICONPATH));
     trayIcon->setContextMenu(menu);
@@ -54,8 +54,8 @@ void wgApplet::createActions() {
     connect(settingsAction, &wgAction::triggered, this, &QWidget::show);
     actions.append(settingsAction);
 
-    //settingsAction = new wgAction("Disconnect", this);
-    //connect(settingsAction, &wgAction::triggered, this, &wgApplet::stop);
+    settingsAction = new wgAction("Disconnect", this);
+    connect(settingsAction, &wgAction::triggered, this, &wgApplet::stop);
 
     //for (auto path : configs) {
         //settingsAction = new wgAction(path.string(), this, path.c_str());
@@ -97,7 +97,9 @@ void wgApplet::start(bool checked) {
 }
 
 // Stop a connection
-void wgApplet::stop(bool checked) {
+//void wgApplet::stop(bool checked) {
+void wgApplet::stop(QString checked) {
+    std::cout << "checked: " << checked.toStdString() << std::endl;
     //setConnection("down", action->getConfig().toStdString());
     return;
 }

@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = wg-applet1.0.0
-DISTDIR = /home/pdmurray/Desktop/Workspace/wg-applet/.tmp/wg-applet1.0.0
+DISTDIR = /home/pdmurray/Desktop/workspace/wg-applet/.tmp/wg-applet1.0.0
 LINK          = clang++
 LFLAGS        = -ccc-gcc-name g++
 LIBS          = $(SUBLIBS) /usr/lib/libQt5Widgets.so /usr/lib/libQt5Gui.so /usr/lib/libQt5Core.so -lGL -lpthread   
@@ -53,10 +53,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = main.cpp \
-		wgapplet.cpp moc_wgapplet.cpp
+		wgapplet.cpp \
+		wgaction.cpp moc_wgapplet.cpp \
+		moc_wgaction.cpp
 OBJECTS       = main.o \
 		wgapplet.o \
-		moc_wgapplet.o
+		wgaction.o \
+		moc_wgapplet.o \
+		moc_wgaction.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -65,31 +69,19 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/gcc-base-unix.conf \
 		/usr/lib/qt/mkspecs/common/clang.conf \
 		/usr/lib/qt/mkspecs/qconfig.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiAgentBase.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiContact.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
-		/usr/lib/qt/mkspecs/modules/qt_ContactEditor.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KContacts.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCoreAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCrash.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGlobalAccel.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGuiAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KI18n.pri \
@@ -98,33 +90,23 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KJobWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KMime.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNewStuff.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNewStuffCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNotifications.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNotifyConfig.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNTLM.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KParts.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KrossCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KrossUi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPty.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KService.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KSyntaxHighlighting.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KTextWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KWallet.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KWaylandClient.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KWaylandServer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KWidgetsAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KWindowSystem.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_av.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_av_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_avwidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_avwidgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
@@ -201,8 +183,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_script_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_serialport.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_serialport_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri \
@@ -217,10 +197,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webengine.pri \
@@ -238,16 +214,9 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_xkbcommon_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_xml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_xml_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Marble.pri \
-		/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
-		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetUi.pri \
-		/usr/lib/qt/mkspecs/modules/qt_ThreadWeaver.pri \
 		/usr/lib/qt/mkspecs/features/qt_functions.prf \
 		/usr/lib/qt/mkspecs/features/qt_config.prf \
 		/usr/lib/qt/mkspecs/linux-clang/qmake.conf \
@@ -272,8 +241,10 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		wg-applet.pro wgapplet.h main.cpp \
-		wgapplet.cpp
+		wg-applet.pro wgapplet.h \
+		wgaction.h main.cpp \
+		wgapplet.cpp \
+		wgaction.cpp
 QMAKE_TARGET  = wg-applet
 DESTDIR       = 
 TARGET        = wg-applet
@@ -293,31 +264,19 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 		/usr/lib/qt/mkspecs/common/gcc-base-unix.conf \
 		/usr/lib/qt/mkspecs/common/clang.conf \
 		/usr/lib/qt/mkspecs/qconfig.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiAgentBase.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiContact.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
-		/usr/lib/qt/mkspecs/modules/qt_ContactEditor.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KContacts.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCoreAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCrash.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGlobalAccel.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGuiAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KI18n.pri \
@@ -326,33 +285,23 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 		/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KJobWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KMime.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNewStuff.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNewStuffCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNotifications.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNotifyConfig.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KNTLM.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KParts.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KrossCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KrossUi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPty.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KService.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KSyntaxHighlighting.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KTextWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KWallet.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KWaylandClient.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KWaylandServer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KWidgetsAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KWindowSystem.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_av.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_av_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_avwidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_avwidgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
@@ -429,8 +378,6 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 		/usr/lib/qt/mkspecs/modules/qt_lib_script_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_serialport.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_serialport_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri \
@@ -445,10 +392,6 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webengine.pri \
@@ -466,16 +409,9 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 		/usr/lib/qt/mkspecs/modules/qt_lib_xkbcommon_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_xml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_xml_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Marble.pri \
-		/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
-		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetUi.pri \
-		/usr/lib/qt/mkspecs/modules/qt_ThreadWeaver.pri \
 		/usr/lib/qt/mkspecs/features/qt_functions.prf \
 		/usr/lib/qt/mkspecs/features/qt_config.prf \
 		/usr/lib/qt/mkspecs/linux-clang/qmake.conf \
@@ -510,31 +446,19 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 /usr/lib/qt/mkspecs/common/gcc-base-unix.conf:
 /usr/lib/qt/mkspecs/common/clang.conf:
 /usr/lib/qt/mkspecs/qconfig.pri:
-/usr/lib/qt/mkspecs/modules/qt_AkonadiAgentBase.pri:
-/usr/lib/qt/mkspecs/modules/qt_AkonadiContact.pri:
-/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri:
-/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri:
-/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri:
 /usr/lib/qt/mkspecs/modules/qt_Attica.pri:
-/usr/lib/qt/mkspecs/modules/qt_ContactEditor.pri:
-/usr/lib/qt/mkspecs/modules/qt_KActivities.pri:
 /usr/lib/qt/mkspecs/modules/qt_KArchive.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuth.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri:
-/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri:
-/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCodecs.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCompletion.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigWidgets.pri:
-/usr/lib/qt/mkspecs/modules/qt_KContacts.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCoreAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCrash.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri:
-/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri:
-/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri:
 /usr/lib/qt/mkspecs/modules/qt_KGlobalAccel.pri:
 /usr/lib/qt/mkspecs/modules/qt_KGuiAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_KI18n.pri:
@@ -543,33 +467,23 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 /usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_KIOGui.pri:
 /usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri:
-/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri:
-/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri:
 /usr/lib/qt/mkspecs/modules/qt_KItemViews.pri:
 /usr/lib/qt/mkspecs/modules/qt_KJobWidgets.pri:
-/usr/lib/qt/mkspecs/modules/qt_KMime.pri:
 /usr/lib/qt/mkspecs/modules/qt_KNewStuff.pri:
 /usr/lib/qt/mkspecs/modules/qt_KNewStuffCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KNotifications.pri:
 /usr/lib/qt/mkspecs/modules/qt_KNotifyConfig.pri:
 /usr/lib/qt/mkspecs/modules/qt_KNTLM.pri:
 /usr/lib/qt/mkspecs/modules/qt_KParts.pri:
-/usr/lib/qt/mkspecs/modules/qt_KrossCore.pri:
-/usr/lib/qt/mkspecs/modules/qt_KrossUi.pri:
+/usr/lib/qt/mkspecs/modules/qt_KPty.pri:
 /usr/lib/qt/mkspecs/modules/qt_KService.pri:
 /usr/lib/qt/mkspecs/modules/qt_KSyntaxHighlighting.pri:
 /usr/lib/qt/mkspecs/modules/qt_KTextWidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_KWallet.pri:
-/usr/lib/qt/mkspecs/modules/qt_KWaylandClient.pri:
-/usr/lib/qt/mkspecs/modules/qt_KWaylandServer.pri:
 /usr/lib/qt/mkspecs/modules/qt_KWidgetsAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_KWindowSystem.pri:
 /usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_av.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_av_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_avwidgets.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_avwidgets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_concurrent.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri:
@@ -646,8 +560,6 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 /usr/lib/qt/mkspecs/modules/qt_lib_script_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_scripttools.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_scripttools_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_serialport.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_serialport_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri:
@@ -662,10 +574,6 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 /usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webchannel.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webchannel_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webengine.pri:
@@ -683,16 +591,9 @@ Makefile: wg-applet.pro /usr/lib/qt/mkspecs/linux-clang/qmake.conf /usr/lib/qt/m
 /usr/lib/qt/mkspecs/modules/qt_lib_xkbcommon_support_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_xml.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_xml_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_Marble.pri:
-/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri:
-/usr/lib/qt/mkspecs/modules/qt_Prison.pri:
-/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_Solid.pri:
 /usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_SonnetUi.pri:
-/usr/lib/qt/mkspecs/modules/qt_ThreadWeaver.pri:
 /usr/lib/qt/mkspecs/features/qt_functions.prf:
 /usr/lib/qt/mkspecs/features/qt_config.prf:
 /usr/lib/qt/mkspecs/linux-clang/qmake.conf:
@@ -733,8 +634,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents wgapplet.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp wgapplet.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents wgapplet.h wgaction.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp wgapplet.cpp wgaction.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents wgapplet.ui $(DISTDIR)/
 
 
@@ -767,14 +668,19 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	clang++ -pipe -O2 -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_wgapplet.cpp
+compiler_moc_header_make_all: moc_wgapplet.cpp moc_wgaction.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_wgapplet.cpp
+	-$(DEL_FILE) moc_wgapplet.cpp moc_wgaction.cpp
 moc_wgapplet.cpp: wgapplet.h \
 		wgaction.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/pdmurray/Desktop/Workspace/wg-applet/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-clang -I/home/pdmurray/Desktop/Workspace/wg-applet -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/10.2.0 -I/usr/include/c++/10.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed -I/usr/include wgapplet.h -o moc_wgapplet.cpp
+	/usr/bin/moc $(DEFINES) --include /home/pdmurray/Desktop/workspace/wg-applet/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-clang -I/home/pdmurray/Desktop/workspace/wg-applet -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/10.2.0 -I/usr/include/c++/10.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed -I/usr/include wgapplet.h -o moc_wgapplet.cpp
+
+moc_wgaction.cpp: wgaction.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include /home/pdmurray/Desktop/workspace/wg-applet/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-clang -I/home/pdmurray/Desktop/workspace/wg-applet -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/10.2.0 -I/usr/include/c++/10.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed -I/usr/include wgaction.h -o moc_wgaction.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -806,8 +712,14 @@ wgapplet.o: wgapplet.cpp wgapplet.h \
 		ui_wgapplet.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wgapplet.o wgapplet.cpp
 
+wgaction.o: wgaction.cpp wgaction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wgaction.o wgaction.cpp
+
 moc_wgapplet.o: moc_wgapplet.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_wgapplet.o moc_wgapplet.cpp
+
+moc_wgaction.o: moc_wgaction.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_wgaction.o moc_wgaction.cpp
 
 ####### Install
 

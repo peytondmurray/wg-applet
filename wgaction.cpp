@@ -1,29 +1,20 @@
 #include <wgaction.h>
 
-//template<typename... Args> wgAction::wgAction(QString configuration, Args... args) : QWidgetAction(args...) {
-    //config = configuration;
-//}
-
-//template<typename... Args> wgAction::wgAction(std::string configuration, Args... args) : QWidgetAction(args...) {
-    //config = QString::fromStdString(configuration);
-//}
-
-//template<typename... Args> wgAction::wgAction(char const *configuration, Args... args) : QWidgetAction(args...) {
-    //config = QString::fromStdString(std::string(configuration));
-//}
-
-//template<typename... Args> wgAction::wgAction(Args... args) : QWidgetAction(args...) {
-    //config = "";
-//}
-
 wgAction::wgAction(QString text, QWidget *parent) : QWidgetAction(parent) {
-    config = text;
+    setText(text);
 }
 
-//QString wgAction::triggered(bool checked) {
+wgAction::wgAction(QString text, QString conf, QWidget *parent) : QWidgetAction(parent) {
+    setText(text);
+    config = conf;
+}
+
+QString wgAction::triggered(bool checked) {
     //QWidgetAction::triggered(checked);
     //return config;
-//}
+    emit action_triggered(getConfig())
+    return;
+}
 
 QString wgAction::getConfig() {
     return config;
